@@ -1,0 +1,33 @@
+package com.example.library;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import lombok.AllArgsConstructor;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+@Transactional
+@Service
+@AllArgsConstructor
+public class MemberService {
+
+	 @Autowired
+	    private PublisherRepository publisherRepository;
+
+	    public Flux<Publisher> getAllPublishers() {
+	        return publisherRepository.findAll();
+	    }
+
+	    public Mono<Publisher> getById(String pubId) {
+	        return publisherRepository.findById(pubId);
+	    }
+
+	    public Mono<Publisher> addPublisher(Publisher publisher) {
+	        return publisherRepository.save(publisher);
+	    }
+	    public Mono<Void> deletePublisher(String pubId) {
+	        return publisherRepository.deleteById(pubId);
+	    }
+}

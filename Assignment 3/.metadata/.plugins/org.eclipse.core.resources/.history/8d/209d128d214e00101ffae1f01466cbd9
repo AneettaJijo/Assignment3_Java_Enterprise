@@ -1,0 +1,44 @@
+package com.example.library;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import lombok.AllArgsConstructor;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+@RestController
+@RequestMapping("publisher")
+public class PublisherController {
+
+    @Autowired
+    private PublisherService publisherService;
+
+    @GetMapping
+    public Flux<Publisher> getAll() {
+        System.out.println("All publisher information");
+        return publisherService.getAll();
+    }
+    @GetMapping("{id}")
+    public Mono<Publisher> getById(@PathVariable("id") final String id) {
+        System.out.println("One publisher info for ID: " + id);
+        return publisherService.getById(id);
+    }
+
+    @PutMapping("{id}")
+    public Mono updateById(@PathVariable("id") final String id, @RequestBody final Publisher publisher) {
+        System.out.println("Updating publisher Info");
+        return publisherService.update(id, publisher);
+    }
+    @PostMapping
+    public Mono save(@RequestBody final Publisher publisher) {
+        return publisherService.save(publisher);
+    }
+}

@@ -1,0 +1,23 @@
+package com.example.library;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.ToString;
+
+@Data
+@Builder
+@ToString
+@AllArgsConstructor
+public class Book {
+
+	private String bookId;
+    private String title;
+    private String author;
+    private double price;
+    private boolean available;
+    private String publisherId; // Foreign key to Publisher
+    private String memberId; // Foreign key to Member (if borrowed)
+    private String dueDate;
+    private String returnDate;
+}

@@ -1,0 +1,17 @@
+package com.example.library;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.ToString;
+
+@Data
+@Builder
+@ToString
+@AllArgsConstructor
+public class Publisher {
+
+	private String pubId;
+    private String name;
+    private String address;
+}

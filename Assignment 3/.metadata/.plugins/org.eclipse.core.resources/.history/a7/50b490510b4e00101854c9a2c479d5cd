@@ -1,0 +1,19 @@
+package com.example.library;
+
+import org.springframework.data.annotation.Id;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.ToString;
+
+@Data
+@Builder
+@ToString
+@AllArgsConstructor
+public class Publisher {
+	@Id
+	private String pubId;
+    private String name;
+    private String address;
+}
